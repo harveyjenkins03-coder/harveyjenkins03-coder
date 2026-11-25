@@ -1,41 +1,98 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.png">
-  <img alt="Harvey Jenkins. Deterministic simulations in Rust, and the tools around them." src="assets/banner-light.png" width="100%">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="assets/hero-light.svg">
+  <img alt="Harvey Jenkins. Systems, AI agent tooling and the guardrails around them." src="assets/hero-light.svg" width="100%">
 </picture>
 
-I'm Harvey. I started programming in March 2026 with a small Python tool and got hooked on how systems fail at the seams: between a client and a server, between two operating systems that ought to agree, between what a test checks and what a person sees.
+I build deterministic game systems, tooling for AI agents, and the guardrails that keep both safe to run. I set the direction and the rules, Claude Code agents write most of the code, and nothing ships without a test, a benchmark or a written limit.
 
-Most of my time now goes into [Errastra](https://errastra.com), a 2D co-op game on its own engine in Rust. The simulation steps 60 times a second in fixed-point arithmetic, so the same inputs give the same world on Windows and Linux, bit for bit, and the build fails if they ever differ. Around the game I build the tools I need: a desktop dashboard, a kit for planning agent work, a broker that keeps keys away from AI agents, and a scanner that keeps private details out of repositories like this one.
+Most of my time goes into [Errastra](https://errastra.com), a 60 Hz co-op game on its own Rust engine. I started programming in March 2026.
 
-## How I work
-
-I build with Claude Code. I write the design and the rules first, make the calls on scope and trade-offs, and read what comes back. Claude writes most of the code. Changes go through tests and benchmarks, and the larger ones through a review by a separate AI agent, before I read the result and decide. It is a habit, not a guarantee, and each repository below says plainly which parts were mine and which were the AI's.
+<table>
+  <tr>
+    <td width="50%">
+      <a href="https://github.com/harveyjenkins03-coder/errastra-engine-notes">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="assets/card-systems-dark.svg">
+          <source media="(prefers-color-scheme: light)" srcset="assets/card-systems-light.svg">
+          <img alt="Deterministic systems. A Rust engine of 15 crates that steps 60 times a second in fixed-point maths. The server leads, clients predict and correct over UDP, and Windows and Linux (WSL2) agree bit for bit." src="assets/card-systems-light.svg" width="100%">
+        </picture>
+      </a>
+    </td>
+    <td width="50%">
+      <a href="https://github.com/harveyjenkins03-coder/agent-workflow">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="assets/card-agents-dark.svg">
+          <source media="(prefers-color-scheme: light)" srcset="assets/card-agents-light.svg">
+          <img alt="AI agent tooling. Plans that replay in a clean worktree, an SQLite memory with trust levels and an injection screen, and a gate that leaves the last step of a new agent profile to a person." src="assets/card-agents-light.svg" width="100%">
+        </picture>
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <a href="https://github.com/harveyjenkins03-coder/mcp-secret-broker">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="assets/card-security-dark.svg">
+          <source media="(prefers-color-scheme: light)" srcset="assets/card-security-light.svg">
+          <img alt="Least-privilege guardrails. An MCP broker that gives agents short leases instead of keys, checks every host, method and path, and censors replies. A scanner checks every git object for private details." src="assets/card-security-light.svg" width="100%">
+        </picture>
+      </a>
+    </td>
+    <td width="50%">
+      <a href="https://github.com/harveyjenkins03-coder/errastra-hub-notes">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="assets/card-platform-dark.svg">
+          <source media="(prefers-color-scheme: light)" srcset="assets/card-platform-light.svg">
+          <img alt="Creative and platform pipelines. A read-first Tauri desktop hub at 7.9 MB in the tray, a Claude Code plugin for designing websites, and a blind-tested style LoRA for the game's generated art." src="assets/card-platform-light.svg" width="100%">
+        </picture>
+      </a>
+    </td>
+  </tr>
+</table>
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/systems-overview-dark.svg">
-  <img alt="Three measured systems: a 361 microsecond p99 server tick against an 8,000 microsecond budget; 7.9 MB in the tray with no web view; 240 tests across three MIT tools" src="assets/systems-overview-light.svg" width="100%">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/4d-loop-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="assets/4d-loop-light.svg">
+  <img alt="How I build, the 4D loop. Delegation: I decide what agents may touch; they get a written brief, short leases and hooks. Description: I write the plan, the rules and the checks; agents write the code and the tests. Discernment: tests, benchmarks and a separate reviewer agent, then I make the call. Diligence: gates before merge, every number dated and the limits written down. The 4D framework comes from Anthropic's AI Fluency course." src="assets/4d-loop-light.svg" width="100%">
 </picture>
 
-## Work
+## Selected work
 
-| Repository | What it is | One measured number |
+| Repository | Area | Proof |
 |---|---|---|
-| [errastra-engine-notes](https://github.com/harveyjenkins03-coder/errastra-engine-notes) | Notes on the game's simulation: one authoritative server, prediction and correction, cross-OS state checks, the test gates | Server tick with 100 enemies: p99 of 361 µs against an 8,000 µs budget |
-| [agent-workflow](https://github.com/harveyjenkins03-coder/agent-workflow) | Replayable plans, a small SQLite memory with an injection screen, and a gate for agent profiles | 131 tests |
-| [errastra-hub-notes](https://github.com/harveyjenkins03-coder/errastra-hub-notes) | Notes on a read-first desktop dashboard (Rust, Tauri 2, Svelte 5) with one audited write path | 7.9 MB in the tray, no web view, 0% GPU |
-| [mcp-secret-broker](https://github.com/harveyjenkins03-coder/mcp-secret-broker) | Short leases instead of keys for AI agents, signed state, and a censor on every reply | 76 tests |
-| [portfolio-shield](https://github.com/harveyjenkins03-coder/portfolio-shield) | Scans every object in a git repository for private details, with commit and push hooks | 33 tests, standard library only |
-| [lab-notes](https://github.com/harveyjenkins03-coder/lab-notes) | Measured experiments, including the ones that did not work | 1.8 s an image on a rented card against 12.9 s on my PC |
+| [errastra-engine-notes](https://github.com/harveyjenkins03-coder/errastra-engine-notes) | Systems | Server tick p99 of 361 to 372 µs with 100 enemies, 8 ms budget |
+| [agent-workflow](https://github.com/harveyjenkins03-coder/agent-workflow) | AI agents | 131 tests, no runtime dependencies |
+| [mcp-secret-broker](https://github.com/harveyjenkins03-coder/mcp-secret-broker) | Security | 76 tests, and no tool returns a secret |
+| [errastra-hub-notes](https://github.com/harveyjenkins03-coder/errastra-hub-notes) | Desktop | 7.9 MB private memory in the tray, no web view |
+| [portfolio-shield](https://github.com/harveyjenkins03-coder/portfolio-shield) | Tooling | Scans every git object, 33 tests |
+| [lab-notes](https://github.com/harveyjenkins03-coder/lab-notes) | Experiments | 1.8 s an image on a rented card, 12.9 s on my PC |
 
-Dates, machines and methods for each number are in the repositories.
+Each repository explains how its numbers were measured.
 
-## What I build with
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/tools-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="assets/tools-light.svg">
+  <img alt="Tools by area. Systems: Rust, fixed point, wgpu, SDL3, cargo-fuzz. AI and orchestration: Claude Code, MCP, Python, SQLite FTS5. Security: HMAC, DPAPI, git hooks, secret scanning. Platform and creative: Tauri 2, Svelte 5, TypeScript, WSL2, GitHub Actions." src="assets/tools-light.svg" width="100%">
+</picture>
 
-- **Systems:** Rust, fixed-point simulation, Cargo workspaces, fuzzing and benchmarks
-- **Interfaces:** Tauri 2, Svelte 5, TypeScript, Astro
-- **Tooling and security:** Python, SQLite, PostgreSQL, git hooks, Windows DPAPI, GitHub Actions, Linux and WSL
-- **Working with AI:** Claude Code, MCP servers, written plans, and review by a separate AI agent before I sign off
+<details>
+<summary>How a change gets from an idea to main</summary>
 
-## Contact
+1. I write the plan first: what the change must do, what it must not touch, and how we will know it works.
+2. Claude Code agents do the work, with short leases instead of keys and hooks that refuse private details.
+3. Tests and benchmarks run, and the larger changes go to a separate reviewer agent. I read its findings and decide.
+4. Nothing merges until the gates pass. Each repository says which parts were mine and which were the AI's.
 
-[hello@errastra.com](mailto:hello@errastra.com) or [errastra.com](https://errastra.com)
+It is a habit, not a guarantee, and the repositories list what was not checked.
+
+</details>
+
+<details>
+<summary>Where the numbers come from</summary>
+
+Most timings come from one desktop PC (Ryzen 9 5900X, Windows 11 Pro, with WSL2 for the Linux leg); the lab notes also use a rented graphics card and say which. Where a number was estimated rather than measured, the repository says so.
+
+</details>
+
+[hello@errastra.com](mailto:hello@errastra.com) · [errastra.com](https://errastra.com)
